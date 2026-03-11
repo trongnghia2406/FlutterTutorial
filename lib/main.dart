@@ -14,18 +14,14 @@ class Home extends StatelessWidget{
         backgroundColor: Colors.red[600],
       ),
       body: Center(
-        child: Text(
-          'Hello, World!',
-          style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-              letterSpacing: 2.0,
-              color: Colors.green[600],
-              fontFamily: 'Arial'
-            ),
-          ),
+          child: Image.asset('assets/images/keeramondo.jpg'),
+          // child: Image.network('https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba'), -> ảnh mạng
+        // child: Image( -> cách khác để hiển thị ảnh
+        //   // image: NetworkImage('https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba'),
+        //     image: AssetImage('assets/images/keeramondo.jpg'),
+        //   ),
       ),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: FloatingActionButton( 
         onPressed: () {},
         backgroundColor: Colors.red[600],
         child: Icon(Icons.add),
