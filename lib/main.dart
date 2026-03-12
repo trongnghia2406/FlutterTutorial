@@ -13,11 +13,8 @@ class Home extends StatelessWidget{
         centerTitle: true,
         backgroundColor: Colors.red[600],
       ),
-      body: Container(
-        padding: EdgeInsets.all(20.0),
-        // còn có thể dùng .symetric(horizontal: 20.0, vertical: 10.0), .fromLTRB(10.0, 20.0, 30.0, 40.0)
-        margin: EdgeInsets.all(20.0),
-        color: Colors.grey[400],
+      body: Padding(
+        padding: EdgeInsets.all(16.0),
         child: Text('Hello World'),
       ),
       floatingActionButton: FloatingActionButton( 
