@@ -14,12 +14,11 @@ class Home extends StatelessWidget{
         backgroundColor: Colors.red[600],
       ),
       body: Center(
-          child: Image.asset('assets/images/keeramondo.jpg'),
-          // child: Image.network('https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba'), -> ảnh mạng
-        // child: Image( -> cách khác để hiển thị ảnh
-        //   // image: NetworkImage('https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba'),
-        //     image: AssetImage('assets/images/keeramondo.jpg'),
-        //   ),
+          child: Icon(
+            Icons.airport_shuttle,
+            size: 50.0,
+            color: Colors.red[600],
+          ),
       ),
       floatingActionButton: FloatingActionButton( 
         onPressed: () {},
