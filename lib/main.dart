@@ -13,26 +13,40 @@ class Home extends StatelessWidget{
         centerTitle: true,
         backgroundColor: Colors.red[600],
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.start,
+      body: Row(
         children: <Widget>[
-          Text('Hello World'),
-          Container(
-            color: Colors.purple,
-            padding: EdgeInsets.all(20.0),
-            child: Text('Inside Container'),
+          Expanded(
+            child: Image.asset('assets/images/keeramondo.jpg'),
+            flex: 6,
           ),
-          Container(
-            color: Colors.amber,
-            padding: EdgeInsets.all(30.0),
-            child: Text('Inside Container 2'),
+          Expanded(
+            flex: 3,
+            child: Container(
+              padding: EdgeInsets.all(20.0),
+              color: Colors.cyan,
+              child: Text('1'),
+            ),
+          ),
+          Expanded(
+            flex: 2,
+            child: Container(
+              padding: EdgeInsets.all(30.0),
+              color: Colors.deepOrange,
+              child: Text('2'),
+            ),
+          ),
+          Expanded(
+            flex: 1,
+            child: Container(
+              padding: EdgeInsets.all(40.0),
+              color: Colors.green,
+              child: Text('1'),
+            ),
           ),
         ],
       ),
       floatingActionButton: FloatingActionButton( 
         onPressed: () {},
-        backgroundColor: Colors.red[600],
         child: Icon(Icons.add),
       ),
     );
