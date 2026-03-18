@@ -12,34 +12,27 @@ class Loading extends StatefulWidget {
 
 class _LoadingState extends State<Loading> {
 
-  void getData() async {
-    try {
-      var url = Uri.parse('https://jsonplaceholder.typicode.com/todos/1');
+  void getTime() async {
+    // 1. Gọi API lấy giờ UTC (giờ gốc)
+    var url = Uri.parse('https://timeapi.io/api/Time/current/zone?timeZone=UTC');
+    Response response = await get(url);
+    Map data = jsonDecode(response.body);
 
-      // Thêm header để "đánh lừa" server rằng đây là trình duyệt thật
-      Response response = await get(
-        url,
-        headers: {
-          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
-          'Accept': 'application/json',
-        },
-      );
+    // 2. Giả sử  muốn tự tính giờ cho một nơi có offset là +07 (Việt Nam)
+    String offset = "+07:00";
+    String hours = offset.substring(0, 3); // Lấy "+07"
 
-      print('Status code: ${response.statusCode}');
-      if (response.statusCode == 200) {
-        Map data = jsonDecode(response.body);
-        print(data);
-        print(data['title']);
-      }
-    } catch (e) {
-      print('Lỗi: $e');
-    }
+    // 3. Thực hiện cộng dồn
+    DateTime now = DateTime.parse(data['dateTime']);
+    now = now.add(Duration(hours: int.parse(hours)));
+
+    print('Giờ sau khi tự cộng: $now');
   }
 
   @override
   void initState() {
     super.initState();
-    getData();
+    getTime();
   }
 
   @override
