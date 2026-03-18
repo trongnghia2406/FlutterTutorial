@@ -21,9 +21,10 @@ class _LoadingState extends State<Loading> {
 
     await instance.getTime();
 
-    // Kiểm tra nếu instance.time bị null thì gán một giá trị mặc định
-    setState(() {
-      time = instance.time ?? "Lỗi lấy dữ liệu";
+    Navigator.pushReplacementNamed(context, '/home',arguments: {
+      'location': instance.location,
+      'flag': instance.flag,
+      'time': instance.time,
     });
   }
 
