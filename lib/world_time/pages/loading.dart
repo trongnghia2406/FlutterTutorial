@@ -1,7 +1,5 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
+import 'package:world_time_project/services/world_time.dart';
 
 class Loading extends StatefulWidget {
   const Loading({super.key});
@@ -12,33 +10,37 @@ class Loading extends StatefulWidget {
 
 class _LoadingState extends State<Loading> {
 
-  void getTime() async {
-    // 1. Gọi API lấy giờ UTC (giờ gốc)
-    var url = Uri.parse('https://timeapi.io/api/Time/current/zone?timeZone=UTC');
-    Response response = await get(url);
-    Map data = jsonDecode(response.body);
+  String time = 'loading';
 
-    // 2. Giả sử  muốn tự tính giờ cho một nơi có offset là +07 (Việt Nam)
-    String offset = "+07:00";
-    String hours = offset.substring(0, 3); // Lấy "+07"
+  void setupWordTime() async {
+    WorldTime instance = WorldTime(
+        location: 'Berlin',
+        flag: 'germany.png',
+        url: 'Europe/Berlin'
+    );
 
-    // 3. Thực hiện cộng dồn
-    DateTime now = DateTime.parse(data['dateTime']);
-    now = now.add(Duration(hours: int.parse(hours)));
+    await instance.getTime();
 
-    print('Giờ sau khi tự cộng: $now');
+    // Kiểm tra nếu instance.time bị null thì gán một giá trị mặc định
+    setState(() {
+      time = instance.time ?? "Lỗi lấy dữ liệu";
+    });
   }
+
 
   @override
   void initState() {
     super.initState();
-    getTime();
+    setupWordTime();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Text('loading screen'),
+      body: Padding(
+        padding: EdgeInsets.all(50.0),
+        child: Text(time),
+      ),
     );
   }
 }
